@@ -1,0 +1,25 @@
+version: '3.5'
+
+networks:
+  web-app-net:
+    name: my-web-app-net
+    driver: bridge
+
+volumes:
+  postgres-storage:
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: testDB
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root@123
+    ports:
+      - 5432:5432
+    networks:
+      - web-app-net
+    volumes:
+      - postgres-storage:/var/lib/postgresql/data
+
+#end of scripts
