@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public abstract class AbstractDataAccessObject<T extends DataTransferObject> implements DataAccessObject<T> {
+public abstract class AbstractDataAccessObject<ID, T extends DataTransferObject> implements DataAccessObject<ID, T> {
 
     protected final Connection connection;
     protected final static String LAST_VAL = "SELECT last_value FROM ";

@@ -12,7 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class OrderDAO extends AbstractDataAccessObject<Order> {
+public class OrderDAO extends AbstractDataAccessObject<Long, Order> {
 
     private final static String GET_BY_ID = "SELECT c.first_name, c.last_name, c.email, o.order_id, o.creation_date, " +
             "o.total_due, o.status, s.first_name, s.last_name, s.email, ol.quantity, p.code, p.name, p.size, " +
@@ -28,7 +28,7 @@ public class OrderDAO extends AbstractDataAccessObject<Order> {
     }
 
     @Override
-    public Order findById(long id) {
+    public Order findById(Long id) {
         Order order = new Order();
         try(PreparedStatement statement = this.connection.prepareStatement(GET_BY_ID);){
             statement.setLong(1, id);
@@ -83,7 +83,7 @@ public class OrderDAO extends AbstractDataAccessObject<Order> {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
 
     }
 

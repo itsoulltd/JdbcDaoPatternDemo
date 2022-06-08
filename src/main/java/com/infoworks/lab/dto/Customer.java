@@ -1,6 +1,6 @@
 package com.infoworks.lab.dto;
 
-public class Customer implements DataTransferObject {
+public class Customer implements DataTransferObject<Long> {
     private long id;
     private String firstName;
     private String lastName;
@@ -11,7 +11,7 @@ public class Customer implements DataTransferObject {
     private String state;
     private String zipCode;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

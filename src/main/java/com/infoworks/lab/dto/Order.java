@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-public class Order implements DataTransferObject {
+public class Order implements DataTransferObject<Long> {
     private long id;
     private String customerFirstName;
     private String customerLastLane;
@@ -20,7 +20,7 @@ public class Order implements DataTransferObject {
 
 
     @Override
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

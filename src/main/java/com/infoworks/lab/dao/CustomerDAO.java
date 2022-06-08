@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerDAO extends AbstractDataAccessObject<Customer> {
+public class CustomerDAO extends AbstractDataAccessObject<Long, Customer> {
     private static final String INSERT = "INSERT INTO customer (first_name, last_name," +
             "email, phone, address, city, state, zipcode) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -31,7 +31,7 @@ public class CustomerDAO extends AbstractDataAccessObject<Customer> {
             "address, city, state, zipcode FROM customer ORDER BY last_name, first_name LIMIT ? OFFSET ?";
 
     @Override
-    public Customer findById(long id) {
+    public Customer findById(Long id) {
         Customer customer = new Customer();
         try(PreparedStatement statement = this.connection.prepareStatement(GET_ONE);){
             statement.setLong(1, id);
@@ -107,7 +107,7 @@ public class CustomerDAO extends AbstractDataAccessObject<Customer> {
             statement.setString(8, dto.getZipCode());
             statement.execute();
             int id = this.getLastVal(CUSTOMER_SEQUENCE);
-            return this.findById(id);
+            return this.findById(Integer.valueOf(id).longValue());
         }catch(SQLException e){
             e.printStackTrace();
             throw new RuntimeException(e);
@@ -170,7 +170,7 @@ public class CustomerDAO extends AbstractDataAccessObject<Customer> {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         try(PreparedStatement statement = this.connection.prepareStatement(DELETE);){
             statement.setLong(1, id);
             statement.execute();

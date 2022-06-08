@@ -4,12 +4,12 @@ import com.infoworks.lab.dto.DataTransferObject;
 
 import java.util.List;
 
-public interface DataAccessObject <T extends DataTransferObject> {
+public interface DataAccessObject <ID, T extends DataTransferObject> {
 
-    T findById(long id);
+    T findById(ID id);
     List<T> findAll();
     T update(T dto);
     T create(T dto);
-    void delete(long id);
+    void delete(ID id);
 
 }
